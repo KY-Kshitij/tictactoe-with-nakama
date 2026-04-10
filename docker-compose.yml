@@ -20,7 +20,7 @@ services:
       - "-ecx"
       - |
         /nakama/nakama migrate up --database.address root@cockroachdb:26257 && \
-        exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100 --runtime.path /nakama/modules --runtime.js_entrypoint index.js "$$@"
+        exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100 --runtime.path /nakama/data/modules --runtime.js_entrypoint main.js "$$@"
     restart: "always"
     links:
       - "cockroachdb:db"
@@ -28,7 +28,7 @@ services:
       - cockroachdb
     volumes:
       - ./backend/data:/nakama/data
-      - ./backend/build:/nakama/modules
+      - ./backend/build:/nakama/data/modules
     expose:
       - "7349"
       - "7350"
