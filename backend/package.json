@@ -1,0 +1,20 @@
+{
+  "name": "nakama-tictactoe-backend",
+  "version": "1.0.0",
+  "description": "Nakama authoritative module for Tic-Tac-Toe",
+  "main": "build/main.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^2.79.1",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "typescript": "^4.8.4",
+    "tslib": "^2.4.0"
+  },
+  "dependencies": {
+    "nakama-runtime": "github:heroiclabs/nakama-common"
+  }
+}
