@@ -53,3 +53,14 @@ To deploy the Nakama backend and Next.js frontend to a cloud environment (e.g. R
 To properly simulate concurrent matchmaking and gameplay on a single local machine without state collisions:
 - Open the application (`http://localhost:3000`) in **two distinct browser sessions** (e.g., one standard window and one **Incognito/Private** window).
 - This ensures the `deviceId` generated via `uuid` and stored in `localStorage` behaves as two distinct physical clients.
+
+
+Running the Application
+To play a game across two browser windows:
+
+Ensure the backend is running:sudo docker compose up --build
+Start the Frontend Server: cd frontend && npm run dev
+Hit http://localhost:3000
+TIP
+
+If you decide to deploy to a real cloud provider later, all you have to do is update your frontend's Vercel environment variables to point to your hosted Nakama instance's IP Address!

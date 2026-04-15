@@ -23,14 +23,24 @@ export default function Matchmaking() {
           socketRef.current = socket;
           await socket.connect(session, true);
 
-          socket.onmatchmakermatched = (matched) => {
-            if (!active) return;
+          socket.onmatchmakermatched = async (matched) => {
+          if (!active) return;
+
+          try {
             setStatus("Match found! Joining...");
-            const matchId = matched.match_id || matched.token;
-            if (matchId) {
-                router.push(`/game/${encodeURIComponent(matchId)}`);
-            }
-          };
+
+            const match = await socket.joinMatch(matched.token);
+
+            router.push(`/game/${encodeURIComponent(match.match_id)}`);
+          } catch (err) {
+            console.error("Failed to join matched game:", err);
+            setStatus("Failed to join match.");
+
+            setTimeout(() => {
+              if (active) router.push("/");
+            }, 2000);
+          }
+        };
 
           await socket.addMatchmaker("+engine:nakama", 2, 2, { engine: "nakama" });
       } catch (e) {

@@ -4,10 +4,10 @@ import typescript from '@rollup/plugin-typescript';
 
 export default {
   input: './nakama/index.ts',
+  treeshake: false,
   output: {
     file: 'build/main.js',
-    format: 'iife',
-    name: 'InitModule'
+    format: 'cjs'
   },
   plugins: [
     resolve(),
