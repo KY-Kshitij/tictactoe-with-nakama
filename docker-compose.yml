@@ -14,12 +14,23 @@ services:
 
   nakama:
     image: heroiclabs/nakama:3.22.0
+    environment:
+      - CORS_ALLOW_ORIGIN=https://tictactoe-with-nakama.vercel.app
     entrypoint:
       - "/bin/sh"
       - "-ecx"
       - |
         /nakama/nakama migrate up --database.address root@cockroachdb:26257 && \
-        exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100 --runtime.path /nakama/data/modules --runtime.js_entrypoint main.js "$$@"
+        exec /nakama/nakama \
+          --name nakama1 \
+          --database.address root@cockroachdb:26257 \
+          --logger.level DEBUG \
+          --session.token_expiry_sec 7200 \
+          --metrics.prometheus_port 9100 \
+          --runtime.path /nakama/data/modules \
+          --runtime.js_entrypoint main.js \
+          --socket.response_headers "Access-Control-Allow-Origin=$${CORS_ALLOW_ORIGIN}" \
+          "$$@"
     restart: "always"
     links:
       - "cockroachdb:db"
