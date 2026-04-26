@@ -37,7 +37,7 @@ To deploy the Nakama backend and Next.js frontend to a cloud environment (e.g. R
    - Use the official `heroiclabs/nakama:3.22.0` Docker image.
    - Attach a persistent volume for the CockroachDB instance.
    - Inject the custom TypeScript module build (`backend/build/main.js`) into `/nakama/data/modules`.
-   - Set `CORS_ALLOW_ORIGIN` to your frontend origin (for example `https://tictactoe-with-nakama.vercel.app`) so browser auth/API calls are accepted.
+   - Set `CORS_ALLOW_ORIGIN` to your frontend origin (for example `https://tictactoe-with-nakama.vercel.app`) so browser auth/API calls are accepted. Do not set `*` when credentials are enabled.
    - Expose ports `7350` (gRPC/Websockets) and `7351` (Console).
 
 2. **Deploy Next.js Engine:**
