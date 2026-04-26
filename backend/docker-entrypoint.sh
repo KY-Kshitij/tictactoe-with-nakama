@@ -8,7 +8,7 @@ fi
 CORS_ALLOW_ORIGIN="${CORS_ALLOW_ORIGIN:-http://localhost:3000}"
 
 if [ "$CORS_ALLOW_ORIGIN" = "*" ]; then
-  echo "CORS_ALLOW_ORIGIN cannot be '*' when credentials are enabled."
+  echo "CORS_ALLOW_ORIGIN cannot be set to wildcard (*)."
   exit 1
 fi
 
