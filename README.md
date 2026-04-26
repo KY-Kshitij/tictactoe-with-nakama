@@ -38,7 +38,7 @@ To deploy the Nakama backend and Next.js frontend to a cloud environment (e.g. R
    - Attach a persistent volume for the CockroachDB instance.
    - Inject the custom TypeScript module build (`backend/build/main.js`) into `/nakama/data/modules`.
    - Set `CORS_ALLOW_ORIGIN` to your frontend origin (for example `https://tictactoe-with-nakama.vercel.app`) so browser auth/API calls are accepted.
-   - Optional: `CORS_ALLOW_CREDENTIALS` (default `true`) and `CORS_PREFLIGHT_MAX_AGE` (default `86400` seconds).
+   - Optional: `CORS_ALLOW_CREDENTIALS` (default `true`), `CORS_PREFLIGHT_MAX_AGE` (default `86400` seconds), `CORS_ALLOW_HEADERS`, and `CORS_ALLOW_METHODS`.
    - Do not use `CORS_ALLOW_ORIGIN=*` together with `CORS_ALLOW_CREDENTIALS=true`.
    - Expose ports `7350` (gRPC/Websockets) and `7351` (Console).
 
